@@ -8,12 +8,13 @@ const taskRoutes = require('./routes/itemRoutes');
 const app = express();
 app.use(express.json());
 
-// Connecting With MongoDb 
 
 
 
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
+
+// Connecting With MongoDb If server is listinig
 
 app.listen(config.PORT, () => {
   console.log(`Server is running on port ${config.PORT}`);
