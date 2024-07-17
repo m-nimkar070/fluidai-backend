@@ -36,7 +36,7 @@ exports.createTask = async (req, res) => {
   const currDate = new Date();
   try {
     if(givenDate && !(givenDate > currDate)){
-        throw new Error('Date should be greater than current data')
+        throw new Error('Date should be greater than current date')
     }
     else{
       const item = await taskService.createTask(req.user.id, req.body);
