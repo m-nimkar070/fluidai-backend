@@ -9,6 +9,13 @@ header:{
   "Content-Type":"application/json"
   "Authorization": {Token}
 }
+  Body:{
+    "title": "New Task 2",
+    "description": "Description for the new task 2",
+    "dueDate": "2024-07-20",
+    "priority": "high",
+    "status": "pending",
+  }
  
   Expected Response:
   {
@@ -24,9 +31,17 @@ header:{
 */
 
 exports.createTask = async (req, res) => {
+  const {dueDate} = req.body;
+  const givenDate =new Date(dueDate);
+  const currDate = new Date();
   try {
-    const item = await taskService.createTask(req.user.id, req.body);
-    res.status(201).send(item);
+    if(givenDate && !(givenDate > currDate)){
+        throw new Error('Date should be greater than current data')
+    }
+    else{
+      const item = await taskService.createTask(req.user.id, req.body);
+      res.status(201).send(item);
+    }
   } catch (error) {
     res.status(400).send(error.message);
   }
