@@ -3,10 +3,12 @@ const mongoose = require('mongoose');
 const config = require("./config/config")
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
+const cors = require("cors");
 
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 
 
