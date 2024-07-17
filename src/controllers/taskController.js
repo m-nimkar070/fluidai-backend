@@ -113,7 +113,7 @@ exports.updateTask = async (req, res) => {
   try {
     const item = await taskService.updateTask(req.user.id, req.params.id, req.body);
     if (!item) return res.status(404).send('Item not found');
-    res.status(204).json(item);
+    res.status(200).json(item);
   } catch (error) {
     if(error.code === 11000){
       res.status(400).send("If you are chnging title, Please Choose a unique Title than others")
@@ -132,7 +132,7 @@ exports.deleteTask = async (req, res) => {
   try {
     const item = await taskService.deleteTask(req.user.id, req.params.id);
     if (!item) return res.status(404).send('Item not found');
-    res.status(204).send('Item deleted');
+    res.status(200).send('Item deleted');
   } catch (error) {
     res.status(400).send(error.message);
   }
